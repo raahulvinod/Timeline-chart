@@ -137,8 +137,8 @@ const TimelineChart = () => {
       const groupSet = new DataSet(groups);
 
       const options = {
-        start: dayjs('2022-10-01').toDate(),
-        end: dayjs('2022-10-31').toDate(),
+        start: initialStartDate.toDate(),
+        end: initialEndDate.toDate(),
         editable: false,
         stack: false,
         groupOrder: (a, b) => {
@@ -159,7 +159,7 @@ const TimelineChart = () => {
       );
       setTimeline(timelineInstance);
     }
-  }, [users]);
+  }, [users, data]);
 
   const handleToday = () => {
     if (timeline) {
@@ -199,7 +199,13 @@ const TimelineChart = () => {
   const handleViewChange = (newView) => {
     setView(newView);
 
-    if (timeline) {
+    if (clickedButton === 'today') {
+      if (timeline) {
+        const start = dayjs().startOf(newView).toDate();
+        const end = dayjs().endOf(newView).toDate();
+        timeline.setWindow(start, end);
+      }
+    } else {
       const start = initialStartDate.startOf(newView).toDate();
       const end = initialStartDate.endOf(newView).toDate();
       timeline.setWindow(start, end);
