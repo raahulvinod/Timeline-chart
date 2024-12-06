@@ -22,6 +22,9 @@ const TimelineChart = () => {
   const [users, setUsers] = useState([]);
   const [data, setData] = useState([]);
 
+  const initialStartDate = dayjs('2022-10-01');
+  const initialEndDate = dayjs('2022-10-31');
+
   // Fetch users
   useEffect(() => {
     fetch('/users.json')
@@ -197,8 +200,8 @@ const TimelineChart = () => {
     setView(newView);
 
     if (timeline) {
-      const start = dayjs().startOf(newView).toDate();
-      const end = dayjs().endOf(newView).toDate();
+      const start = initialStartDate.startOf(newView).toDate();
+      const end = initialStartDate.endOf(newView).toDate();
       timeline.setWindow(start, end);
       setClickedButton(newView);
     }
