@@ -218,26 +218,34 @@ const TimelineChart = () => {
   }
 
   return (
-    <Box sx={{ p: 12, ml: 8, border: '12px solid #DEEFF5' }}>
+    <Box
+      sx={{
+        p: { xs: 2, sm: 4, md: 6, lg: 8 },
+        ml: { xs: 0, sm: 1, md: 2 },
+        border: '12px solid #DEEFF5',
+        mt: 12,
+      }}
+    >
       <Box
         sx={{
           display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
           justifyContent: 'space-between',
           alignItems: 'center',
-          mb: 12,
+          mb: { xs: 2, sm: 4, md: 6 },
         }}
       >
         <Box
           sx={{
             display: 'flex',
             alignItems: 'center',
-            gap: 2,
+            gap: { xs: 1, sm: 2 },
+            flexWrap: 'wrap',
           }}
         >
           <Button
             sx={{
-              ml: 2,
-              alignItems: 'center',
+              ml: { xs: 0, sm: 1 },
               backgroundColor:
                 clickedButton === 'today' ? '#0076CE' : 'transparent',
               color: clickedButton === 'today' ? 'white' : '#1E90FF',
@@ -245,7 +253,6 @@ const TimelineChart = () => {
               '&:hover': {
                 backgroundColor: '#0076CE',
                 color: 'white',
-                border: '1px solid #0076CE',
               },
             }}
             onClick={() => {
@@ -308,11 +315,13 @@ const TimelineChart = () => {
       <Box
         ref={containerRef}
         sx={{
-          height: 'auto',
-          width: '1200px',
+          height: '300px',
+          width: { xs: '90%', sm: '95%', md: '1000px' },
+          maxWidth: '1200px',
           border: '1px solid #ccc',
           borderRadius: '8px',
-          ml: '12px',
+          ml: { xs: 0, md: '12px' },
+          mx: 'auto',
         }}
       />
     </Box>
