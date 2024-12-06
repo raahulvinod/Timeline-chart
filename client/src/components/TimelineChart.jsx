@@ -164,10 +164,35 @@ const TimelineChart = () => {
     }
   };
 
-  const handleNext = () => {};
+  // Next button
+  const handleNext = () => {
+    if (timeline) {
+      const currentEndDate = timeline.getWindow().end;
+      const nextStartDate = dayjs(currentEndDate).add(1, view).toDate();
+      const nextEndDate = dayjs(currentEndDate)
+        .add(1, view)
+        .endOf(view)
+        .toDate();
+      timeline.setWindow(nextStartDate, nextEndDate);
+      setClickedButton('next');
+    }
+  };
 
-  const handlePrevious = () => {};
+  // Previous button
+  const handlePrevious = () => {
+    if (timeline) {
+      const currentStartDate = timeline.getWindow().start;
+      const prevStartDate = dayjs(currentStartDate).subtract(1, view).toDate();
+      const prevEndDate = dayjs(currentStartDate)
+        .subtract(1, view)
+        .endOf(view)
+        .toDate();
+      timeline.setWindow(prevStartDate, prevEndDate);
+      setClickedButton('previous');
+    }
+  };
 
+  // Change views
   const handleViewChange = (newView) => {
     setView(newView);
 
